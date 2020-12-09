@@ -45,6 +45,10 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
+
   function handleProfile() {
     setIsProfilePopupOpen(true);
   }
@@ -118,16 +122,19 @@ function App() {
   }
 
   const handleLogin = (email, password) => {
-    console.log(email, password);
     auth
       .authorize(email, password)
       .then(handleResponse)
       .catch((err) => console.log(err));
   };
 
-  const handleResponse = (data) => {
-    console.log(data);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUserData({email: ''});
+    setLoggedIn(false);
+  };
 
+  const handleResponse = (data) => {
     auth
       .getContent(data.token)
       .then((res) => {
@@ -158,25 +165,18 @@ function App() {
   };
 
   const tokenCheck = () => {
-    // const jwt = localStorage.getItem("jwt");
-    // if (jwt) {
-    //   duckAuth
-    //     .getContent(jwt)
-    //     .then((res) => {
-    //       console.log(res);
-    //       if (res) {
-    //         setUserData({
-    //           username: res.username,
-    //           email: res.email,
-    //         });
-    //         setLoggedIn(true);
-    //         setLoading(false);
-    //       }
-    //     })
-    //     .catch((err) => console.log(err));
-    // } else {
-    //   setLoading(false);
-    // }
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth
+        .getContent(token)
+        .then((res) => {
+          if (res) {
+            setUserData({ email: res.data.email });
+            setLoggedIn(true);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   function handleUpdateAvatar({ link }) {
@@ -221,7 +221,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={userData.email} />
+        <Header handleLogout={handleLogout} email={userData.email} />
         <Switch>
           <ProtectedRoute
             exact
@@ -237,7 +237,7 @@ function App() {
             component={Main}
           />
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} tokenCheck={tokenCheck} />
+            <Login handleLogin={handleLogin} />
           </Route>
           <Route path="/sign-up">
             <Register handleRegister={handleRegister} />

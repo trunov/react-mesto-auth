@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-// import "./styles/Register.css";
 
 const Register = ({ handleRegister }) => {
   const [data, setData] = useState({

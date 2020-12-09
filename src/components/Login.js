@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Login = ({ handleLogin }) => {
   const [data, setData] = useState({
@@ -25,9 +24,6 @@ const Login = ({ handleLogin }) => {
   return (
     <div onSubmit={handleSubmit} className="login">
       <h2 className="login__header">Вход</h2>
-      {/* <p className="login__error">
-          {data.message}
-        </p> */}
       <form className="login__form">
         <input
           className="login__form__input"
@@ -55,13 +51,6 @@ const Login = ({ handleLogin }) => {
           Войти
         </button>
       </form>
-
-      {/* <div className="login__signup">
-        <p>Ещё не зарегистрированы?</p>
-        <Link to="/sign-up" className="signup__link">
-          Зарегистрироваться
-        </Link>
-      </div> */}
     </div>
   );
 };
