@@ -1,6 +1,6 @@
 # mesto-react
 
-### Responsive web page - "Mesto", containing editable information about the user and photos posted by him.
+### Responsive web page - "Mesto", containing Register/Login functionality using JWT token, editable information about the user and photos posted by him.
 
 **Technology Stack:**
 
@@ -17,5 +17,6 @@
 - media queries;
 - relative and absolute positioning;
 - the project code is sorted by _BEM methodology_.
+- react-router-dom
 
-### [project link](https://trunov.github.io/mesto-react/)
+### [project link](https://trunov.github.io/react-mesto-auth/)
