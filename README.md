@@ -1,7 +1,21 @@
-# Здесь будет ваш проект на Реакте с авторизацией и регистрацией
+# mesto-react
 
-Используйте ваши предыдущие наработки по проекту Mesto. Это может быть работа 11-го спринта или его улучшенная версия после 2-х последних спринтов. 
+### Responsive web page - "Mesto", containing editable information about the user and photos posted by him.
 
-Все запросы на авторизацию, регистрацию и проверку токена должны работать через сервис `https://auth.nomoreparties.co`. Остальные запросы, не относящиеся к этой проектной работе могут быть к бэкенду из предыдущих спринтов.
+**Technology Stack:**
 
-Успехов!
+- React
+- JSX
+- React Hooks:
+  - useState;
+  - useEffect;
+  - dependencies;
+- _flexbox_;
+- _grid layout_;
+- _font-face_ for connecting third-party fonts;
+- pseudo-classes;
+- media queries;
+- relative and absolute positioning;
+- the project code is sorted by _BEM methodology_.
+
+### [project link](https://trunov.github.io/mesto-react/)
