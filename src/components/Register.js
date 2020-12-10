@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const Register = ({ handleRegister }) => {
+const Register = ({ handleRegister, isDataSet }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -27,9 +27,11 @@ const Register = ({ handleRegister }) => {
       console.log("пароль не введен");
       return;
     }
-    let { email, password } = data;
+    const { email, password } = data;
     handleRegister(password, email);
-    setData({ email: "", password: "" });
+    if (isDataSet) {
+      setData({ email: "", password: "" });
+    }
   };
 
   return (

@@ -21,6 +21,7 @@ function App() {
   const [isPlacePopupOpen, setIsPlacePopupOpen] = React.useState(false);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = React.useState(false);
   const [isPopupInfo, setIsPopupInfo] = React.useState(false);
+  const [isDataSet, setIsDataSet] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ isOpen: false });
 
   const [infoData, setInfoData] = useState({
@@ -130,7 +131,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setUserData({email: ''});
+    setUserData({ email: "" });
     setLoggedIn(false);
   };
 
@@ -151,11 +152,13 @@ function App() {
     auth
       .register(password, email)
       .then(() => {
+        setIsDataSet(true);
         history.push("/sign-in");
         setInfoData({ icon: true, title: "Вы успешно зарегистрировались!" });
         handleInfo();
       })
       .catch(() => {
+        setIsDataSet(false);
         setInfoData({
           icon: false,
           title: "Что-то пошло не так! Попробуйте ещё раз.",
@@ -240,7 +243,7 @@ function App() {
             <Login handleLogin={handleLogin} />
           </Route>
           <Route path="/sign-up">
-            <Register handleRegister={handleRegister} />
+            <Register handleRegister={handleRegister} isDataSet={isDataSet} />
           </Route>
           <Route exact path="/">
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
